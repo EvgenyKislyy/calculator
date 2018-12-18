@@ -64,7 +64,7 @@ public class Calculator {
             //trying to parse the number
             Double number = Double.valueOf(userInput);
             numbersService.add(number);
-            System.out.println(userInput);
+            inputOutput.print(number.toString());
             return true;
         } catch (NumberFormatException e) {
             //e.printStackTrace();
