@@ -16,6 +16,7 @@ public class Calculator {
     }
 
     private void calculate() {
+        System.out.println("Start running calculator");
         NumbersService numbersService = new NumbersService();
 
         Scanner inputScanner = new Scanner(System.in);

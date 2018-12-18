@@ -20,6 +20,8 @@ public class OperationTest {
         assertEquals(Double.valueOf(0.457), operation.execute(0.456, 0.001));
         assertEquals(Double.valueOf(0.0), operation.execute(0.0, 0.0));
         assertEquals(Double.valueOf(-4.0), operation.execute(-5.0, 1.0));
+
+        assertEquals(Double.valueOf(100000000000020.0), operation.execute(100000000000000.0, 20.0));
     }
 
     @Test
@@ -48,6 +50,7 @@ public class OperationTest {
         assertEquals(Double.valueOf(45.6), operation.execute(0.456, 100.0));
 
         assertEquals(Double.valueOf(-5.0), operation.execute(-5.0, 1.0));
+        assertEquals(Double.valueOf(1.0E61), operation.execute(99999999999999999999999999999.9, 99999999999999999999999999999999.9));
     }
 
     @Test
@@ -65,6 +68,7 @@ public class OperationTest {
 
         assertEquals(Double.valueOf(3), operation.execute(3.0, 9.0));
         assertEquals(Double.valueOf(20000), operation.execute(5.0, 100000.0));
+        assertEquals(Double.valueOf(3.333333333333333E30), operation.execute(3.0, 9999999999999999999999999999999.0));
     }
 
     @Test
