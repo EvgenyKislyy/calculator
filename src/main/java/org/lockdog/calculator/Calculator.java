@@ -16,39 +16,55 @@ public class Calculator {
     }
 
     private void calculate() {
-        NumbersService<Double> numbersService = new NumbersService<>();
+        NumbersService numbersService = new NumbersService();
 
         Scanner inputScanner = new Scanner(System.in);
         String userInput = "";
         while (!userInput.equals(QUIT_COMMAND)) {
             System.out.print(">");
-            userInput = inputScanner.nextLine().trim();
-            if (!userInput.isBlank()) {
-                try {
-                    Double number = Double.valueOf(userInput);
-                    numbersService.add(number);
-                    System.out.println(userInput);
-                    continue;
-                } catch (NumberFormatException e) {
-                    //e.printStackTrace();
-                    //not a number
-                }
+            if (inputScanner.hasNext()) {
+                userInput = inputScanner.nextLine().trim();
 
-                if (userInput.length() == 1) {
-                    Optional<Operation> operation = Operation.fromCharacter(userInput.charAt(0));
-                    if (operation.isPresent()) {
+                if (!userInput.isBlank()) {
+                    try {
+                        Double number = Double.valueOf(userInput);
+                        numbersService.add(number);
+                        System.out.println(userInput);
+                        continue;
+                    } catch (NumberFormatException e) {
+                        //e.printStackTrace();
+                        //not a number, maybe it's sign
+                    }
 
-                        Double number1 = numbersService.getCurrent().orElse(0.0);
-                        Double number2 = numbersService.getPrevious().orElse(0.0);
+                    if (userInput.length() == 1) {
+                        Optional<Operation> operation = Operation.fromCharacter(userInput.charAt(0));
+                        if (operation.isPresent()) {
 
-                        Double result = operation.get().execute(number1, number2);
-                        numbersService.add(result);
-                        System.out.println(result);
+
+                            Double number1 = numbersService.getCurrent();
+                            Double number2 = numbersService.getPrevious();
+
+                            if (operation.get().equals(Operation.DIVIDE) && number2.equals(0.0)) {
+                                System.err.println("Not possible to divide 0");
+                                return;
+                            }
+
+                            Double result = operation.get().execute(number1, number2);
+                            numbersService.add(result);
+                            System.out.println(result);
+                        }
                     }
                 }
+            } else {
+                exit();
             }
 
-
         }
+        exit();
+    }
+
+    private void exit() {
+        System.out.println("Thanks for being with us");
+        System.exit(0);
     }
 }

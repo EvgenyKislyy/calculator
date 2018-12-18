@@ -26,14 +26,14 @@ public class OperationTest {
     public void testMinus() {
         Operation operation = Operation.MINUS;
         assertEquals(Double.valueOf(0.0), operation.execute(5.0, 5.0));
-        assertEquals(Double.valueOf(-10.0), operation.execute(-5.0, 5.0));
-        assertEquals(Double.valueOf(-5.0), operation.execute(0.0, 5.0));
-        assertEquals(Double.valueOf(5.0), operation.execute(5.0, 0.0));
+        assertEquals(Double.valueOf(10.0), operation.execute(-5.0, 5.0));
+        assertEquals(Double.valueOf(5.0), operation.execute(0.0, 5.0));
+        assertEquals(Double.valueOf(-5.0), operation.execute(5.0, 0.0));
 
-        assertEquals(Double.valueOf(98.89), operation.execute(100.0, 1.11));
-        assertEquals(Double.valueOf(0.455), operation.execute(0.456, 0.001));
+        assertEquals(Double.valueOf(-98.89), operation.execute(100.0, 1.11));
+        assertEquals(Double.valueOf(-0.455), operation.execute(0.456, 0.001));
         assertEquals(Double.valueOf(0.0), operation.execute(0.0, 0.0));
-        assertEquals(Double.valueOf(-6.0), operation.execute(-5.0, 1.0));
+        assertEquals(Double.valueOf(6.0), operation.execute(-5.0, 1.0));
     }
 
     @Test
@@ -55,13 +55,16 @@ public class OperationTest {
         Operation operation = Operation.DIVIDE;
         assertEquals(Double.valueOf(1.0), operation.execute(5.0, 5.0));
         assertEquals(Double.valueOf(-1.0), operation.execute(-5.0, 5.0));
-        assertEquals(Double.valueOf(0.0), operation.execute(0.0, 5.0));
+        // assertEquals(Double.valueOf(0.0), operation.execute(0.0, 5.0));
        // assertEquals(Double.valueOf(5.0), operation.execute(5.0, 0.0));
 
-        assertEquals(Double.valueOf(100), operation.execute(100.0, 1.00));
-        assertEquals(Double.valueOf(500), operation.execute(0.500, 0.001));
+        assertEquals(Double.valueOf(0.01), operation.execute(100.0, 1.00));
+        assertEquals(Double.valueOf(0.002), operation.execute(0.500, 0.001));
 //        assertEquals(Double.valueOf(0.0), operation.execute(0.0, 0.0));
-        assertEquals(Double.valueOf(-5.0), operation.execute(-5.0, 1.0));
+        assertEquals(Double.valueOf(-0.2), operation.execute(-5.0, 1.0));
+
+        assertEquals(Double.valueOf(3), operation.execute(3.0, 9.0));
+        assertEquals(Double.valueOf(20000), operation.execute(5.0, 100000.0));
     }
 
     @Test

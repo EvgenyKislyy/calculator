@@ -2,25 +2,24 @@ package org.lockdog.calculator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-public class NumbersService<T> {
+public class NumbersService {
 
-    private List<T> numbers = new ArrayList<T>();
+    private List<Double> numbers = new ArrayList<Double>();
 
-    public void add(T integer) {
+    public void add(Double integer) {
         numbers.add(integer);
     }
 
-    public Optional<T> getCurrent() {
-        return !numbers.isEmpty() ? Optional.of(numbers.get(numbers.size()-1)) : Optional.empty();
+    public Double getCurrent() {
+        return !numbers.isEmpty() ? numbers.get(numbers.size() - 1) : 0.0;
     }
 
-    public Optional<T> getPrevious() {
-        return numbers.size() > 1 ? Optional.of(numbers.get(numbers.size()-2)) : Optional.empty();
+    public Double getPrevious() {
+        return numbers.size() > 1 ? numbers.get(numbers.size() - 2) : 0.0;
     }
 
-    public List<T> getHistory() {
+    public List<Double> getHistory() {
         return numbers;
     }
 }

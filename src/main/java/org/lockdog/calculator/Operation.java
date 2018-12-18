@@ -12,14 +12,14 @@ public enum Operation {
     MINUS('-') {
         @Override
         Double execute(final Double num1, final Double num2) {
-            return num1 - num2 ;
+            return num2 - num1;
         }
     },
 
     DIVIDE('/') {
         @Override
         Double execute(final Double num1, final Double num2) {
-            return   num1 / num2;
+            return num2 / num1;
         }
     },
 
