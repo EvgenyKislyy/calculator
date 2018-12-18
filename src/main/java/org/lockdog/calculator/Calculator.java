@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public class Calculator {
 
-    private InputReader inputReader = new ConsoleInputReader();
+    private InputOutput inputOutput = new ConsoleInputOutput();
     private NumbersService numbersService = new NumbersService();
 
     public static void main(String[] args) {
@@ -14,18 +14,17 @@ public class Calculator {
     private void calculate() {
         System.out.println("Start calculator");
 
-        while (inputReader.hasNext()) {
+        while (inputOutput.hasNext()) {
             //continue until quit command or eof
 
-            String newInput = inputReader.readNext();
+            String newInput = inputOutput.readNext();
 
             if (!newInput.isBlank()) {
-                if (tryToParseTheNumber(newInput)) {
-                    //ok, it was number, let's read the next line
-                } else {
-                    //lets try maybe it's the math sign
-                    //if yes - do calculation
+                //lets try to parse the number,
+                if (!tryToParseTheNumber(newInput)) {
+                    //  if no - lets try to parse math sign
                     tryToParseMathSign(newInput);
+                    // and if it was math sign - lets do the calculation
                 }
             }
 
@@ -34,7 +33,7 @@ public class Calculator {
         exit();
     }
 
-    private void tryToParseMathSign(String userInput) {
+    private boolean tryToParseMathSign(String userInput) {
         if (userInput.length() == 1) {
             Optional<Operation> operation = Operation.fromCharacter(userInput.charAt(0));
             if (operation.isPresent()) {
@@ -45,18 +44,19 @@ public class Calculator {
 
                 if (operation.get().equals(Operation.DIVIDE) && number2.equals(0.0)) {
                     System.err.println("Not possible to divide 0");
-                    return;
+                    return true;
                 }
 
                 Double number1 = numbersService.getCurrent();
 
                 Double result = operation.get().execute(number1, number2);
                 numbersService.add(result);
-                System.out.println(result);
+                inputOutput.print(result.toString());
                 //calculating result, writing it to our numbers history, and printing to the console
+                return true;
             }
         }
-
+        return false;
     }
 
     private boolean tryToParseTheNumber(String userInput) {

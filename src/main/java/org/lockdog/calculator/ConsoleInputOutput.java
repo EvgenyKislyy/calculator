@@ -2,7 +2,7 @@ package org.lockdog.calculator;
 
 import java.util.Scanner;
 
-public class ConsoleInputReader implements InputReader {
+public class ConsoleInputOutput implements InputOutput {
 
     private static final String QUIT_COMMAND = "q";
 
@@ -22,5 +22,9 @@ public class ConsoleInputReader implements InputReader {
         } else {
             return false;
         }
+    }
+
+    public void print(String s) {
+        System.out.println(s);
     }
 }

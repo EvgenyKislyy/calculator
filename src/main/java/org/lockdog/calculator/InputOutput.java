@@ -1,7 +1,9 @@
 package org.lockdog.calculator;
 
-public interface InputReader {
+public interface InputOutput {
     String readNext();
 
     Boolean hasNext();
+
+    void print(String s);
 }
