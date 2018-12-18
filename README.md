@@ -21,9 +21,10 @@ Running scripts (maven)
 
 build 
 
-java -jar target/calculator-1.0-SNAPSHOT.jar 
+ mvn package
+
 
 
 run 
 
-cd java -jar target/calculator-1.0-SNAPSHOT.jar 
+java -jar target/calculator-1.0-SNAPSHOT.jar 
