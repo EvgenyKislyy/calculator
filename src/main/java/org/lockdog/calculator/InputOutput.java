@@ -9,13 +9,13 @@ public interface InputOutput {
     String readNext();
 
     /**
-     * Do we have some input line?
+     * Do we have some input line? (exit command means no)
      * @return
      */
     Boolean hasNext();
 
     /**
-     * Pring back the response
+     * Print back the response
      * @param s
      */
     void print(String s);

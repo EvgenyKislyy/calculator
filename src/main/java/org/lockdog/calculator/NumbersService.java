@@ -34,7 +34,7 @@ public class NumbersService {
     }
 
     /**
-     * get all the numbers history
+     * get all the numbers history, inputs and the results
      * @return
      */
     public List<Double> getHistory() {
