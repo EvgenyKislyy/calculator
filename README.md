@@ -19,7 +19,9 @@ With more time on project maybe I could write more tests
 
 Running scripts (maven)
 
-build java -jar target/calculator-1.0-SNAPSHOT.jar 
+build 
+java -jar target/calculator-1.0-SNAPSHOT.jar 
 
 
-run cd java -jar target/calculator-1.0-SNAPSHOT.jar 
+run 
+cd java -jar target/calculator-1.0-SNAPSHOT.jar 
