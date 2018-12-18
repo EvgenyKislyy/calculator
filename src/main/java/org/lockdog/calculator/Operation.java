@@ -32,7 +32,11 @@ public enum Operation {
 
     private final Character sign;
 
-
+    /**
+     * Constructor of enum with math sign
+     *
+     * @param sign
+     */
     Operation(Character sign) {
         this.sign = sign;
     }
@@ -40,6 +44,11 @@ public enum Operation {
 
     abstract Double execute(Double num1, Double num2);
 
+    /**
+     * Return operation enum instance from it's character
+     * @param sign
+     * @return
+     */
     public static Optional<Operation> fromCharacter(Character sign) {
         for (Operation operation : Operation.values()) {
             if (operation.sign.equals(sign)) {
