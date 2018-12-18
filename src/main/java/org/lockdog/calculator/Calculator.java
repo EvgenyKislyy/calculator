@@ -17,6 +17,7 @@ public class Calculator {
         while (inputOutput.hasNext()) {
             //continue until quit command or eof
 
+            //receive the input string, and trying to split into the different arguments
             String[] newInput = inputOutput.readNext().trim().split(" ");
 
             for (int cnt = 0; cnt < newInput.length; cnt++) {
