@@ -17,17 +17,18 @@ public class Calculator {
         while (inputOutput.hasNext()) {
             //continue until quit command or eof
 
-            String newInput = inputOutput.readNext().trim();
+            String[] newInput = inputOutput.readNext().trim().split(" ");
 
-            if (!newInput.isBlank()) {
-                //lets try to parse the number,
-                if (!tryToParseTheNumber(newInput)) {
-                    //  if no - lets try to parse math sign
-                    tryToParseMathSign(newInput);
-                    // and if it was math sign - lets do the calculation
+            for (int cnt = 0; cnt < newInput.length; cnt++) {
+                if (!newInput[cnt].isBlank()) {
+                    //lets try to parse the number,
+                    if (!tryToParseTheNumber(newInput[cnt], newInput.length)) {
+                        //  if no - lets try to parse math sign
+                        tryToParseMathSign(newInput[cnt]);
+                        // and if it was math sign - lets do the calculation
+                    }
                 }
             }
-
 
         }
         exit();
@@ -59,12 +60,21 @@ public class Calculator {
         return false;
     }
 
-    private boolean tryToParseTheNumber(String userInput) {
+    /**
+     * Try to parse the number from string
+     *
+     * @param userInput
+     * @param length    prints the number if only it was the only one input
+     * @return
+     */
+    private boolean tryToParseTheNumber(String userInput, int length) {
         try {
             //trying to parse the number
             Double number = Double.valueOf(userInput);
             numbersService.add(number);
-            inputOutput.print(number.toString());
+            if (length == 1) {
+                inputOutput.print(number.toString());
+            }
             return true;
         } catch (NumberFormatException e) {
             //e.printStackTrace();
