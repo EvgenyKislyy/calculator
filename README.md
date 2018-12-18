@@ -4,7 +4,7 @@
 
 Calculator - main class for doing operations
 
-Number service - that remembers both 2 latest numbers for the future, and history of all the numbers
+NumberService -  remembers both 2 latest numbers for the future, and history of all the numbers
 
 Operation - that contains logic for math operations, easy extendable
 
