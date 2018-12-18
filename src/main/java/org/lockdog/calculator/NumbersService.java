@@ -5,7 +5,7 @@ import java.util.List;
 
 public class NumbersService {
 
-    private List<Double> numbers = new ArrayList<Double>();
+    private final List<Double> numbers = new ArrayList<>();
 
     /**
      * Adding new integer to the history

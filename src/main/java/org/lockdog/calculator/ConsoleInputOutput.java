@@ -6,7 +6,7 @@ public class ConsoleInputOutput implements InputOutput {
 
     private static final String QUIT_COMMAND = "q";
 
-    private Scanner inputScanner = new Scanner(System.in);
+    private final Scanner inputScanner = new Scanner(System.in);
 
     private String currentLine;
 

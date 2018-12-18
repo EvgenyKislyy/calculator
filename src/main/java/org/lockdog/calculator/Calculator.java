@@ -4,6 +4,7 @@ import java.util.Optional;
 
 public class Calculator {
 
+
     private InputOutput inputOutput = new ConsoleInputOutput();
     private NumbersService numbersService = new NumbersService();
 
@@ -16,27 +17,28 @@ public class Calculator {
 
         while (inputOutput.hasNext()) {
             //continue until quit command or eof
-
-            //receive the input string, and trying to split into the different arguments
-            String[] newInput = inputOutput.readNext().trim().split(" ");
-
-            for (String argument : newInput) {
-                if (argument.isBlank()) {
-                    continue;
-                }
-                //lets try to parse the number,
-                if (!tryToParseTheNumber(argument, newInput.length)) {
-                    //  if no - lets try to parse math sign
-                    tryToParseMathSign(argument);
-                    // and if it was math sign - lets do the calculation
-                }
-            }
-
+            parseInput(inputOutput.readNext());
         }
         exit();
     }
 
-    private boolean tryToParseMathSign(String input) {
+    protected void parseInput(String inputString) {
+        //receive the input string, and trying to split into the different arguments
+        String[] newInput = inputString.trim().split(" ");
+        for (String argument : newInput) {
+            if (argument.isBlank()) {
+                continue;
+            }
+            //lets try to parse the number, and print it if it's the only one argument in input
+            if (!tryToParseTheNumber(argument, newInput.length == 1)) {
+                //  if no - lets try to parse math sign
+                tryToParseMathSign(argument);
+                // and if it was math sign - lets do the calculation
+            }
+        }
+    }
+
+    protected boolean tryToParseMathSign(String input) {
         if (input.length() == 1) {
             Optional<Operation> operation = Operation.fromCharacter(input.charAt(0));
             if (operation.isPresent()) {
@@ -66,15 +68,15 @@ public class Calculator {
      * Try to parse the number from string
      *
      * @param input
-     * @param length    prints the number if only it was the only one input
+     * @param printBack should it print back the number?
      * @return
      */
-    private boolean tryToParseTheNumber(String input, int length) {
+    protected boolean tryToParseTheNumber(String input, boolean printBack) {
         try {
             //trying to parse the number
             Double number = Double.valueOf(input);
             numbersService.add(number);
-            if (length == 1) {
+            if (printBack) {
                 inputOutput.print(number.toString());
             }
             return true;
@@ -89,4 +91,10 @@ public class Calculator {
         System.out.println("Thanks for being with us");
         System.exit(0);
     }
+
+
+    public void setNumbersService(NumbersService numbersService) {
+        this.numbersService = numbersService;
+    }
+
 }
