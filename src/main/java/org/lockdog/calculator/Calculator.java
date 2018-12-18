@@ -17,7 +17,7 @@ public class Calculator {
         while (inputOutput.hasNext()) {
             //continue until quit command or eof
 
-            String newInput = inputOutput.readNext();
+            String newInput = inputOutput.readNext().trim();
 
             if (!newInput.isBlank()) {
                 //lets try to parse the number,
