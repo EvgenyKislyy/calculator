@@ -88,5 +88,20 @@ public class CalculatorTest {
         assertEquals(15, numbersService.getHistory().size());
         assertEquals(Double.valueOf(1), numbersService.getCurrent());
 
+        calculator.parseInput("ff");
+        assertEquals(15, numbersService.getHistory().size());
+        assertEquals(Double.valueOf(1), numbersService.getCurrent());
+
+        calculator.parseInput("");
+        assertEquals(15, numbersService.getHistory().size());
+        assertEquals(Double.valueOf(1), numbersService.getCurrent());
+
+        calculator.parseInput("    sdfsf   f       r      sdfs    ");
+        assertEquals(15, numbersService.getHistory().size());
+        assertEquals(Double.valueOf(1), numbersService.getCurrent());
+
+        calculator.parseInput("           10          ");
+        assertEquals(16, numbersService.getHistory().size());
+        assertEquals(Double.valueOf(10), numbersService.getCurrent());
     }
 }
