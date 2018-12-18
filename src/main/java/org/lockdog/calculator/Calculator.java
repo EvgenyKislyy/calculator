@@ -5,17 +5,14 @@ import java.util.Optional;
 public class Calculator {
 
     private InputReader inputReader = new ConsoleInputReader();
+    private NumbersService numbersService = new NumbersService();
 
     public static void main(String[] args) {
-
-
         (new Calculator()).calculate();
-
     }
 
     private void calculate() {
         System.out.println("Start calculator");
-        NumbersService numbersService = new NumbersService();
 
         while (inputReader.hasNext()) {
             //continue until quit command or eof
