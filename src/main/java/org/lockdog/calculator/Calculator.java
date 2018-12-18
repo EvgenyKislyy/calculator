@@ -1,12 +1,10 @@
 package org.lockdog.calculator;
 
 import java.util.Optional;
-import java.util.Scanner;
 
 public class Calculator {
 
-
-    private static final String QUIT_COMMAND = "q";
+    private InputReader inputReader = new ConsoleInputReader();
 
     public static void main(String[] args) {
 
@@ -19,13 +17,10 @@ public class Calculator {
         System.out.println("Start calculator");
         NumbersService numbersService = new NumbersService();
 
-        Scanner inputScanner = new Scanner(System.in);
-        String userInput = "";
-        while (!userInput.equals(QUIT_COMMAND) && inputScanner.hasNext()) {
+        while (inputReader.hasNext()) {
             //continue until quit command or eof
-            System.out.print(">");
 
-            userInput = inputScanner.nextLine().trim();
+            String userInput = inputReader.readNext();
 
             if (!userInput.isBlank()) {
                 try {
