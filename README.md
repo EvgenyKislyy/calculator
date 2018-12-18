@@ -16,6 +16,8 @@ I choosed Double for the numbers format because there are some fractions in the 
 List of integers in NumberService allow us to see the history, but of course it takes some space in memory
 
 With more time on project maybe I could write more tests
+And check the max_min ranges
+And try to check - maybe BigDecimal is more appropriate for that
 
 Running scripts (maven)
 
